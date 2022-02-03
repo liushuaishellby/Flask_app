@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            height: 100px;
+            text-align: center;
+        }
+        #navi {
+            margin: auto;
+            width: 1200px;
+            height: 40px;
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        ul,
+        ol {
+            list-style: none;
+        }
+
+        img {
+            border: none;
+            vertical-align: middle;
+        }
+
+        a {
+            text-decoration: none;
+            color: #232323;
+        }
+
+        textarea {
+            resize: none;
+            overflow: auto;
+        }
+
+        #banner {
+            position: relative;
+        }
+
+        #register {
+            width: 350px;
+            height: 350px;
+            border: 1px, saddlebrown;
+            background-color: rgba(234, 243, 237, 0.7);
+
+            text-align: center;
+            padding-top: 20px;
+            position: absolute;
+            right: 400px;
+            top: 70px;
+        }
+
+        input {
+            width: 300px;
+            height: 42px;
+            margin-top: 5px;
+            text-indent: 15px
+        }
+
+        #submit {
+            text-indent: 0px;
+            background-color: rgb(182, 101, 8);
+            border: transparent;
+        }
+
+        .lite {
+            width: auto;
+            height: auto;
+        }
+
+        p {
+            text-align: center;
+            margin-top: 50px;
+        }
+        ul {
+            position: relative;
+        }
+        li {
+            width: 40px;
+            height: 40px;
+            position: relative;
+        }
+        .li_left {
+            float: left;
+        }
+        .li_right {
+            float: right;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 导航栏 start-->
+    <div class="header">
+        <div id="navi">
+            <ul>
+                <li class="li_left"><a href="./<index>.html"><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2F6a72293dff1b59210d4090a3015610e8fb9cfe2933cb-pYpvSb_fw658&refer=http%3A%2F%2Fhbimg.b0.upaiyun.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1645953238&t=7335dba06996612789d8622087e8b502" alt="" width="100%" height="100%"></a></li>
+                <li class="li_right"> <a href="">注册</a><a href="">登陆</a></li>
+            </ul>
+        </div>
+       
+    </div>
+    <!-- 导航栏 end-->
+    <!-- 注册模块 start-->
+    <div id="banner">
+        <img src="https://gw.alicdn.com/imgextra/i3/O1CN01iyYdem1GQd1yGgA0a_!!6000000000617-0-tps-2500-600.jpg" alt=""
+            sizes="" srcset="" height="600px" width="100%">
+        <div id="register">
+            <form action="/api/login" method="post">
+                账号：<input type="text" name="username" id="" placeholder="请输入账号"><br>
+                密码：<input type="password" name="passwodr" id="" placeholder="请输入密码"><br>
+                昵称：<input type="text" name="nickname" id="" placeholder="请输入昵称"><br>
+                性别：<input type="radio" name="sex" id="" value="女" checked class="lite">女 <input class="lite"
+                    type="radio" name="sex" id="" value="男" checked>男<br>
+                <input id="submit" type="submit" name="submit" value="登录">
+            </form>
+        </div>
+    </div>
+    <!-- 注册模块 end-->
+    <p>阿里巴巴集团 | 阿里巴巴国际站 | 阿里巴巴中国站 | 全球速卖通 | 淘宝网 | 天猫 | 聚划算 | 一淘 | 阿里妈妈 | 飞猪 | 虾米 | 阿里云计算 | 云OS | 万网 | 支付宝 | 来往<br><br>
+
+        关于淘宝合作伙伴营销中心廉正举报联系客服开放平台诚征英才联系我们网站地图隐私权政策法律声明知识产权 | © 2003-现在 Taobao.com 版权所有<br><br>
+
+        增值电信业务经营许可证：浙B2-20080224|增值电信业务经营许可证（跨地区）： B2-20150210|浙网文（2019）1033-086号|浙江省网络食品销售第三方平台提供者备案：浙网食A33010001
+
+        互联网药品信息服务资格证书（浙）-经营性-2018-0010|短消息类服务接入代码使用证书：号【2016】00154-A01|信息网络传播视听许可证：1109364号|出版物网络交易平台服务经营备案号：新出发浙备字第002号
+
+        浙公网安备
+        33010002000078号|浙B2-20080224-1|广播电视节目制作经营许可证（浙）字第01012号|市场名称登记证：工商网市字3301004120号|医疗器械网络交易服务第三方平台备案：（浙）网械平台备字[2018]第00004号
+    </p>
+</body>
+
+</html>
