@@ -15,5 +15,5 @@ def create_app():
     db.init_app(app)
     from APP import api
     # 注册蓝图
-    app.register_blueprint(api.api, url_prefix="/")
+    app.register_blueprint(api.api, url_prefix="/api")
     return app

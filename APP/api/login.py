@@ -23,7 +23,7 @@ def login():
             for i, key in data.items():  # 遍历字典的key不能为空
                 if key == '':
                     return jsonify({"code": "404", "msg": i + "不能为空"})
-            if not data['username'] or not data['password'] :
+            if not data['username'] or not data['password']:
                 return jsonify({"code": "405", "msg": "缺少必填参数"})
             if data['username'] == us_info[1] and data['password'] == us_info[2]:
 
