@@ -13,6 +13,8 @@ def create_app():
     app.config.from_object(ConfigClass)
     # 使用app初始化db
     db.init_app(app)
+    from .ext.send_mail import mail
+    mail.init_app(app)
     from APP import api
     # 注册蓝图
     app.register_blueprint(api.api, url_prefix="/api")

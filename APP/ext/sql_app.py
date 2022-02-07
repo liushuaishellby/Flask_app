@@ -19,3 +19,8 @@ class GetSql:
         db.session.add(u)
         db.session.commit()
         db.session.close()
+
+    # 查询邮箱
+    def query_email(self, username):
+        user = UserInfo.query.filter_by(username == username).first()
+        return user
