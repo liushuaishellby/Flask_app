@@ -9,12 +9,11 @@ class GetSql:
     # 改
     # 查
     def query_sql(self, u):
-        user = UserInfo.query.filter(UserInfo.username == u)
-        for i in user:
-            return [i.id, i.username, i.password, i.age, i.nickname]
+        user = UserInfo.query.filter(UserInfo.username == u).first()
+        return user
 
     # 增
-    def add_sql(self, u, pwd, sex, token, nickname, age=None):
+    def add_sql(self, u, pwd, sex, token, nickname, age=19):
         u = UserInfo(username=u, password=pwd, age=age, sex=sex, token=token, nickname=nickname)
         db.session.add(u)
         db.session.commit()

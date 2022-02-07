@@ -3,7 +3,10 @@
 
 {% block title %}测试小课堂-登录{% endblock %}
 
-{% block head %}{% endblock %}
+{% block head %}
+<script src="{{ url_for('static',filename='jquery/jquery.v3.6.0.min.js') }}"></script>
+<script src="{{ url_for('static',filename='js/register.js') }}"></script>
+{% endblock %}
 
 
 {% block body %}
@@ -23,7 +26,7 @@
             <input type="text" class="form-control" id="validatedInputGroupCustomFile" name="captcha" required>
           </div>
           <div class="input-group-append">
-            <button class="btn btn-outline-secondary" type="button">获取验证码</button>
+            <button class="btn btn-outline-secondary" type="button" id="captcha-btn">获取验证码</button>
           </div>
         </div>
       </div>
@@ -36,14 +39,14 @@
         <label for="exampleInputPassword1">密码</label>
         <input type="password" class="form-control" id="exampleInputPassword1" name="password">
         <small id="passwordHelpBlock" class="form-text text-muted">
-          长度必须为 8-20 个字符。
+          必须包含大小写字母和数字，可以使用特殊字符，长度在8-16之间
         </small>
       </div>
       <div class="form-group">
         <label for="exampleTextarea1">昵称</label>
         <input type="text" class="form-control" id="exampleTextarea1" name="nickname">
       </div>
-      <input type="submit" class="btn btn-primary btn-block">注册</input>
+      <input type="submit" class="btn btn-primary btn-block"></input>
     </form>
   </div>
   <div class="col-sm"></div>

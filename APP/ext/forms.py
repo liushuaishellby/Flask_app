@@ -26,3 +26,11 @@ class RegisterForm(wtforms.Form):
         user_model = EmailCaptchaModel.query.filter_by(email=email).first()
         if user_model:
             raise wtforms.ValidationError("邮箱已存在")
+
+
+class LoginForm(wtforms.Form):
+    """
+    校验登录的用户名是长度是否符合要求
+    """
+    username = wtforms.StringField(validators=[length(min=6, max=20)])
+    password = wtforms.StringField(validators=[length(min=8, max=20)])
