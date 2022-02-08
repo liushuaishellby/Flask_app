@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 
-{% block title %}测试小课堂-登录{% endblock %}
+{% block title %}测试小课堂-注册{% endblock %}
 
 {% block head %}
 <script src="{{ url_for('static',filename='jquery/jquery.v3.6.0.min.js') }}"></script>
@@ -11,44 +11,50 @@
 
 {% block body %}
 <div class="row mt-5">
-  <div class="col-sm"></div>
-  <div class="col-sm">
-    <form method="post" action="{{ url_for('api.register') }}">
-      <div class="form-group">
-        <label for="exampleInputEmail1">邮箱</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email">
-        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-      </div>
-      <div class="form-group">
-        <div class="input-group is-invalid">
-          <label for="validatedInputGroupCustomFile"></label>
-          <div class="custom-file">
-            <input type="text" class="form-control" id="validatedInputGroupCustomFile" name="captcha" required>
-          </div>
-          <div class="input-group-append">
-            <button class="btn btn-outline-secondary" type="button" id="captcha-btn">获取验证码</button>
-          </div>
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="exampleTextarea">用户名</label>
-        <input type="text" class="form-control" id="exampleTextarea" name="username">
-        <small class="form-text text-muted">赶紧输入用户名</small>
-      </div>
-      <div class="form-group">
-        <label for="exampleInputPassword1">密码</label>
-        <input type="password" class="form-control" id="exampleInputPassword1" name="password">
-        <small id="passwordHelpBlock" class="form-text text-muted">
-          必须包含大小写字母和数字，可以使用特殊字符，长度在8-16之间
-        </small>
-      </div>
-      <div class="form-group">
-        <label for="exampleTextarea1">昵称</label>
-        <input type="text" class="form-control" id="exampleTextarea1" name="nickname">
-      </div>
-      <input type="submit" class="btn btn-primary btn-block"></input>
-    </form>
-  </div>
-  <div class="col-sm"></div>
+    <div class="col-sm"></div>
+    <div class="col-sm">
+        <form method="post" action="{{ url_for('api.register') }}">
+            <div class="form-group">
+                <label for="exampleInputEmail1">邮箱</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                       name="email">
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                    else.</small>
+            </div>
+            <div class="form-group">
+                <div class="input-group is-invalid">
+                    <label for="validatedInputGroupCustomFile"></label>
+                    <div class="custom-file">
+                        <input type="text" class="form-control" id="validatedInputGroupCustomFile" name="captcha"
+                               required>
+                    </div>
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button" id="captcha-btn">获取验证码</button>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="exampleTextarea">用户名</label>
+                <input type="text" class="form-control" id="exampleTextarea" name="username">
+                <small class="form-text text-muted">字母开头，长度6-12之间，允许字母数字下划线</small>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">密码</label>
+                <input type="password" class="form-control" id="exampleInputPassword1" name="password">
+                <small id="passwordHelpBlock" class="form-text text-muted">
+                    必须包含大小写字母和数字，长度在8-16之间
+                </small>
+            </div>
+            <div class="form-group">
+                <label for="exampleTextarea1">昵称</label>
+                <input type="text" class="form-control" id="exampleTextarea1" name="nickname">
+                <small class="form-text text-muted">
+                    必须为中文，长度在3-10之间
+                </small>
+            </div>
+            <input type="submit" class="btn btn-primary btn-block"></input>
+        </form>
+    </div>
+    <div class="col-sm"></div>
 </div>
 {% endblock %}

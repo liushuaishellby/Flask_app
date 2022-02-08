@@ -1,6 +1,6 @@
 import json
 from . import api
-from flask import request, render_template, jsonify, redirect, url_for
+from flask import request, render_template, jsonify, redirect, url_for, session
 from ..ext.sql_app import GetSql
 from ..ext.forms import LoginForm
 from werkzeug.security import check_password_hash
@@ -33,6 +33,8 @@ def login():
                 return jsonify({"code": 406, "msg": "账号不存在"})
             print(check_password_hash(us_info.password, data['password']))
             if us_info and check_password_hash(us_info.password, data['password']):
+                # 保存session信息
+                session['user_id'] = us_info.username
                 data = {
                     "code": 200,
                     "info": {
@@ -44,7 +46,7 @@ def login():
                     "msg": "success"
                 }
                 #  return jsonify(data)
-                return redirect(url_for("api.community"), code=201)
+                return redirect(url_for("api.community"))
             else:
                 return jsonify({"code": 404, "msg": "用户名或密码错误"})
         except KeyError as e:

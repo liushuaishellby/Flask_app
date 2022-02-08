@@ -1,7 +1,7 @@
 import time
 
 from . import api
-from flask import request, render_template, jsonify, redirect, url_for
+from flask import request, render_template, jsonify, redirect, url_for, session
 from ..ext.sql_app import GetSql
 from ..ext.check import CheckInfo
 from ..models import EmailCaptchaModel
@@ -39,7 +39,8 @@ def register():
                 # 将数据添加到数据库
                 GetSql().add_sql(u=data['username'], pwd=generate_password_hash(data['password']), token=d['token'],
                                  sex="女", nickname=data['nickname'])
-                return redirect(url_for("api.login"), code=200)
+                session['user_id'] = data['username']
+                return redirect(url_for("api.community"))
             else:
                 return jsonify({"code": "400", "msg": "用户名已存在"})
 

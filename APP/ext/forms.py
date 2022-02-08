@@ -34,3 +34,8 @@ class LoginForm(wtforms.Form):
     """
     username = wtforms.StringField(validators=[length(min=6, max=20)])
     password = wtforms.StringField(validators=[length(min=8, max=20)])
+
+
+class QuestionFrom(wtforms.Form):
+    title = wtforms.StringField(validators=[length(min=3, max=20)])
+    content = wtforms.StringField(validators=[length(min=5)])

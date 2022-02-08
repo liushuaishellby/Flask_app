@@ -26,3 +26,15 @@ class EmailCaptchaModel(db.Model):
     email = db.Column(db.String(100), nullable=False, unique=True)
     captcha = db.Column(db.String(10), nullable=False)
     create_time = db.Column(db.DateTime, default=datetime.now)
+
+
+class QuesitonModel(db.Model):
+    __tablename__ = "question1"
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    title = db.Column(db.String(200), nullable=False)
+    content = db.Column(db.Text, nullable=False)
+    # 一对多关联
+    author_id = db.Column(db.Integer, db.ForeignKey("user_info.id"))
+    # 反向引用 通过question 可以获得某个人所有发布的问答
+    author = db.relationship("UserInfo", backref="question")
+    create_time = db.Column(db.DateTime, default=datetime.now)
