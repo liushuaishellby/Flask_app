@@ -28,8 +28,8 @@ class EmailCaptchaModel(db.Model):
     create_time = db.Column(db.DateTime, default=datetime.now)
 
 
-class QuesitonModel(db.Model):
-    __tablename__ = "question1"
+class QuestionModel(db.Model):
+    __tablename__ = "question"
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     title = db.Column(db.String(200), nullable=False)
     content = db.Column(db.Text, nullable=False)
@@ -38,3 +38,15 @@ class QuesitonModel(db.Model):
     # 反向引用 通过question 可以获得某个人所有发布的问答
     author = db.relationship("UserInfo", backref="question")
     create_time = db.Column(db.DateTime, default=datetime.now)
+
+
+class AnswerModel(db.Model):
+    __tablename__ = "answer"
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    content = db.Column(db.Text, nullable=False)
+    create_time = db.Column(db.DateTime, default=datetime.now)
+    question_id = db.Column(db.Integer, db.ForeignKey("question.id"))
+    author_id = db.Column(db.Integer, db.ForeignKey("user_info.id"))
+
+    question = db.relationship("QuestionModel", backref=db.backref("answers", order_by=create_time.desc()))
+    author = db.relationship("UserInfo", backref="answers")

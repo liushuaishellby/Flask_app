@@ -16,10 +16,11 @@
             {% for question in questions %}
             <li>
                 <div class="side-question">
-                    <img src="{{ url_for('static',filename='img/touxiang.jpg') }}" alt="" class="side-question-avatar">
+                    <img src="{{ url_for('static',filename='img/touxiang.jpeg') }}" alt="" class="side-question-avatar">
                 </div>
                 <div class="question-main">
-                    <div class="question-title"><a href="#">{{ question.title}}</a></div>
+                    <div class="question-title"><a href="{{ url_for('api.question_detail',question_id=question.id) }}">{{
+                        question.title}}</a></div>
                     <div class="question-content">{{ question.content}}</div>
                     <div class="question-detail">
                         <span class="question-author">{{ question.author.username }}</span>

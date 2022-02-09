@@ -1,8 +1,6 @@
 import wtforms
-from wtforms import validators
 from wtforms.validators import length, email
-from ..models import EmailCaptchaModel, UserInfo
-from .sql_app import GetSql
+from ..models import EmailCaptchaModel
 
 
 class RegisterForm(wtforms.Form):
@@ -39,3 +37,10 @@ class LoginForm(wtforms.Form):
 class QuestionFrom(wtforms.Form):
     title = wtforms.StringField(validators=[length(min=3, max=20)])
     content = wtforms.StringField(validators=[length(min=5)])
+
+
+class AnswerForm(wtforms.Form):
+    """
+    校验回复的内容
+    """
+    content = wtforms.StringField(validators=[length(min=1)])

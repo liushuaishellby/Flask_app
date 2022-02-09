@@ -36,7 +36,7 @@ class CheckInfo(object):
         return result
 
     def check_nickname(self, nickname):
-        pattern_nickname = r'^[\u4e00-\u9fa5]{0,}$'
+        pattern_nickname = r'[a-z0-9[^a-za-z0-9_\n\t]]*'
         result = re.search(pattern_nickname, nickname)
         return result
 

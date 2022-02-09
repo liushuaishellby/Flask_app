@@ -2,7 +2,7 @@ from . import api
 from flask import request, render_template, g, redirect, url_for
 
 from .. import db
-from ..models import QuesitonModel
+from ..models import  QuestionModel
 from ..decorators import login_required
 from ..ext.forms import QuestionFrom
 
@@ -19,7 +19,7 @@ def publish():
             title = form.title.data
             content = form.content.data
             # 将数据添加至数据库
-            question = QuesitonModel(title=title, content=content,author=g.user)
+            question = QuestionModel(title=title, content=content, author=g.user)
             db.session.add(question)
             db.session.commit()
             return redirect(url_for('index'))

@@ -1,7 +1,7 @@
 from flask import render_template, session, g
 from APP.ext.sql_app import GetSql
 from APP import create_app
-from APP.models import QuesitonModel
+
 
 app = create_app()
 
@@ -32,12 +32,5 @@ def context_processor():
         return {}
 
 
-@app.route('/index', methods=['POST', 'GET'])
-def index111():
-    print(123)
-    questions = QuesitonModel.query.all()
-    return render_template('index.html', questions=questions)
-
-
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0')
