@@ -3,13 +3,11 @@
 from flask import render_template, request, g, redirect, url_for, jsonify
 from APP.api import api
 from .. import db
-from ..decorators import login_required
 from ..models import AnswerModel
 from ..ext.forms import AnswerForm
 
 
 @api.route('/answer/<int:question_id>', methods=['POST'])
-@login_required
 def answer(question_id):
     form = AnswerForm(request.form)
     if form.validate():

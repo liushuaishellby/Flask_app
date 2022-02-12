@@ -6,6 +6,7 @@ from APP.models import EmailCaptchaModel
 
 def split_s(**data):
     new_data = {}
+
     for d in data:
         if d == 'email':
             new_data[d] = data[d]
@@ -25,8 +26,11 @@ class CheckInfo(object):
         return result
 
     def check_email(self, email):
+        print(email)
         pattern_email = r'^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$'
         result = re.search(pattern_email, email)
+        if not result:
+            return ({"code": "404", "msg": "email格式错误"})
         return result
 
     def check_pwd(self, pwd):
@@ -41,7 +45,9 @@ class CheckInfo(object):
         return result
 
     def check_user_info(self, **data):
+        print(data)
         data = split_s(**data)
+
         username = self.check_username(data['username'])
         pwd = self.check_pwd(data['password'])
         nickname = self.check_nickname(data['nickname'])
@@ -54,6 +60,8 @@ class CheckInfo(object):
         # 校验验证码是否正确
         email = data['email']
         user_model = EmailCaptchaModel.query.filter_by(email=email).first()
+        if not user_model:
+            return ({"code": "404", "msg": "未填写正确的验证码"})
         if data['captcha'] != user_model.captcha:
             return ({"code": "404", "msg": "验证码不正确"})
 

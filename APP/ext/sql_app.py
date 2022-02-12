@@ -13,8 +13,8 @@ class GetSql:
         return user
 
     # 增
-    def add_sql(self, u, pwd, sex, token, nickname, age=19):
-        u = UserInfo(username=u, password=pwd, age=age, sex=sex, token=token, nickname=nickname)
+    def add_sql(self, u, pwd,  nickname, age=19):
+        u = UserInfo(username=u, password=pwd, age=age,   nickname=nickname)
         db.session.add(u)
         db.session.commit()
         db.session.close()

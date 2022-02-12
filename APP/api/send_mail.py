@@ -14,7 +14,11 @@ from ..ext.check import CheckInfo
 
 @api.route('/email', methods=['POST'])
 def my_mail():
-    email = request.form.get('email')
+    if request.headers.get('Content-Type') == 'application/json':
+        data = request.get_json()
+        email = data['email']
+    else:
+        email = request.form.get('email')
     # 生成验证码
     letters = string.ascii_letters + string.digits
     captcha = "".join(random.sample(letters, 4))
