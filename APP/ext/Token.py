@@ -40,7 +40,7 @@ def verify_token(token):
         return None
     # 拿到转后的数据，根据模型类去数据库查询用户的信息
     # user = UserInfo.query.get(data['id'])
-    return data['username']
+    return data['id']
 
 
 def login_required(func):
@@ -53,10 +53,8 @@ def login_required(func):
     @wraps(func)
     def verification_token(*args, **kwargs):
         try:
-            print(request.headers)
             # 在请求头拿到token
             token = request.headers['XT-token']
-            print('下来了吗')
         except Exception:
             # 没有接收到token，给前端一个错误
             # 这里的code写一个文件统一管理。后期再来做

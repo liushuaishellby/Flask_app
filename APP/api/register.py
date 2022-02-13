@@ -1,13 +1,11 @@
 import json
-import time
 
 from . import api
-from flask import request, render_template, jsonify, redirect, url_for, session
+from flask import request, jsonify
 
 from ..ext.make_res import make_res
 from ..ext.sql_app import GetSql
 from ..ext.check import CheckInfo
-from ..models import EmailCaptchaModel
 from werkzeug.security import generate_password_hash
 
 

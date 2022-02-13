@@ -1,12 +1,10 @@
 import string
 import random
 from datetime import datetime
-
 from . import api
 from flask_mail import Message
 from flask import request, jsonify
 from ..models import EmailCaptchaModel
-
 from .. import db
 from ..ext.send_mail import mail
 from ..ext.check import CheckInfo
