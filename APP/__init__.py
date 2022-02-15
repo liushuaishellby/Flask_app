@@ -9,6 +9,7 @@ db = SQLAlchemy()
 # 工厂模式
 def create_app():
     app = Flask(__name__)
+    app.app_context()
     # app配置config信息
     app.config.from_object(ConfigClass)
     # 使用app初始化db

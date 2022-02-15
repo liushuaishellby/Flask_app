@@ -3,4 +3,4 @@ from flask import Blueprint
 # 创建蓝图对象
 api = Blueprint("api", __name__)
 
-from . import login, register, send_mail, community, logout, publish, index, answer, question_detail
+from . import community, question_detail, answer, send_mail, login, logout, publish, community, register

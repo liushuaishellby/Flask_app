@@ -21,7 +21,8 @@ def register():
                 data = request.get_json()
                 if type(data) == str:
                     data = json.loads(data)
-                if not data['username'] or not data['password'] or not data['nickname'] or not data['email'] or not data['captcha']:
+                if not data['username'] or not data['password'] or not data['nickname'] or not data['email'] or not \
+                data['captcha']:
                     res = make_res(4003)
                     return res
             else:
@@ -51,3 +52,6 @@ def register():
         except KeyError as e:
             res = make_res(4003)
             return res
+    else:
+        res = make_res(5005)
+        return res

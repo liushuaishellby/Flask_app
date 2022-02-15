@@ -1,6 +1,4 @@
 import re
-from flask import jsonify
-
 from APP.models import EmailCaptchaModel
 
 

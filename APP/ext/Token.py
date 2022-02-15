@@ -1,10 +1,9 @@
 from flask import request, jsonify
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 from config import ConfigClass
-from ..base.status_code import StatusCodeEnum, res_status
+from ..base.status_code import  res_status
 from functools import wraps
 
-from ..models import UserInfo
 
 
 def create_token(api_user):
@@ -53,6 +52,7 @@ def login_required(func):
     @wraps(func)
     def verification_token(*args, **kwargs):
         try:
+            print('进来')
             # 在请求头拿到token
             token = request.headers['XT-token']
         except Exception:
