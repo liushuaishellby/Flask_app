@@ -1,4 +1,5 @@
 """回复页面请求和存储"""
+import json
 
 from flask import render_template, request, g, redirect, url_for, jsonify
 from APP.api import api
@@ -9,37 +10,53 @@ from ..models import AnswerModel, UserInfo, QuestionModel
 from ..ext.forms import AnswerForm
 
 
-@api.route('/answer', methods=['POST', 'GET'])
-@login_required
-def answer():
+@api.route('/push_answer', methods=['POST', 'GET'])
+# @login_required
+def push_answer():
     try:
-        question_id = request.form.get('question_id')
-        question = QuestionModel.query.get(question_id)
-        answer_list = []
-        for answer in question.answers:
-            answer_info = {
-                "answer_user": answer.author.username,
-                "answer_content": answer.content,
-                "answer_create_time": str(answer.create_time)}
-            answer_list.append(answer_info)
-        # data中保存了所有回复信息以及回复总数
-        data = {"answer_total": len(question.answers), "answer_info": answer_list}
         if request.method == 'POST':
-            form = AnswerForm(request.form)
-            token = request.headers['XT-token']
-            id = verify_token(token)
-            user = UserInfo.query.get(id)
-            if form.validate():
-                content = form.content.data
-                # 储存回复
-                answer_model = AnswerModel(content=content, author=user, question_id=question_id)
-                db.session.add(answer_model)
-                db.session.commit()
-                res = make_res(200,data)
-                return res
+            if request.headers.get('Content-Type') == 'application/json':
+                if not request.get_json():
+                    res = make_res(4000)
+                    return res
+                answer_data = request.get_json()
+                if type(answer_data) == str:
+                    data = json.loads(answer_data)
+
+                question_id = answer_data['question_id']
+                content = answer_data['content']
+                user = answer_data['username']
+            else:
+                form = AnswerForm(request.form)
+                if form.validate():
+                    content = form.content.data
+                    question_id = form.question_id.data
+                    user = form.username.data
+                else:
+                    res = make_res(5006)
+                    return res
+                    # 储存回复
+            answer_model = AnswerModel(content=content, author=user, question_id=question_id)
+            db.session.add(answer_model)
+            db.session.commit()
+            question = QuestionModel.query.get(question_id)
+            answer_list = []
+            for answer in question.answers:
+                if not answer:
+                    res = make_res(5003)
+                    return res
+                answer_info = {
+                    "answer_user": answer.author.username,
+                    "answer_content": answer.content,
+                    "answer_create_time": str(answer.create_time)}
+                answer_list.append(answer_info)
+                # data中保存了所有回复信息以及回复总数
+            data = {"answer_total": len(question.answers), "answer_info": answer_list}
+            res = make_res(200, data)
+            return res
         else:
-            res = make_res(5005,data)
+            res = make_res(5005)
             return res
     except Exception:
-        res = make_res(5006)
+        res = make_res(5003)
         return res
