@@ -25,6 +25,7 @@ def login():
                 res = make_res(4003)
                 return res
             data = request.form.to_dict()  # 获取请求的信息数据
+        print(data)
         try:
             if not data['username'] or not data['password']:
                 res = make_res(4003)

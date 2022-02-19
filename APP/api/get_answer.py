@@ -10,7 +10,7 @@ from ..models import AnswerModel, UserInfo, QuestionModel
 from ..ext.forms import AnswerForm
 
 
-@api.route('/get_answer', methods=['POST','GET'])
+@api.route('/get_answer', methods=['POST', 'GET'])
 # @login_required
 def get_answer():
     try:
@@ -20,6 +20,7 @@ def get_answer():
                     res = make_res(4000)
                     return res
                 data = request.get_json()
+                print(data)
                 if type(data) == str:
                     data = json.loads(data)
                 question_id = data['question_id']
@@ -36,9 +37,9 @@ def get_answer():
             res = make_res(5003)
             return res
         for answer in question.answers:
-
             answer_info = {
-                "answer_user": answer.author.username,
+                "answer_id": answer.id,
+                "answer_username": answer.author.username,
                 "answer_content": answer.content,
                 "answer_create_time": str(answer.create_time)}
             answer_list.append(answer_info)

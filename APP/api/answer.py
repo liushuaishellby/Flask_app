@@ -11,7 +11,7 @@ from ..ext.forms import AnswerForm
 
 
 @api.route('/push_answer', methods=['POST', 'GET'])
-# @login_required
+@login_required
 def push_answer():
     try:
         if request.method == 'POST':
@@ -25,21 +25,24 @@ def push_answer():
 
                 question_id = answer_data['question_id']
                 content = answer_data['content']
-                user = answer_data['username']
             else:
                 form = AnswerForm(request.form)
                 if form.validate():
                     content = form.content.data
                     question_id = form.question_id.data
-                    user = form.username.data
                 else:
                     res = make_res(5006)
                     return res
                     # 储存回复
+            token = request.headers['XT-token']
+            id = verify_token(token)
+            user = UserInfo.query.get(id)
             answer_model = AnswerModel(content=content, author=user, question_id=question_id)
             db.session.add(answer_model)
             db.session.commit()
+            db.session.close()
             question = QuestionModel.query.get(question_id)
+
             answer_list = []
             for answer in question.answers:
                 if not answer:
@@ -57,6 +60,5 @@ def push_answer():
         else:
             res = make_res(5005)
             return res
-    except Exception:
-        res = make_res(5003)
-        return res
+    except Exception as e:
+        raise e
