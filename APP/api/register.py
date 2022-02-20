@@ -51,7 +51,8 @@ def register():
 
         except KeyError as e:
             res = make_res(4003)
-            return res
+            # return res
+            raise
     else:
         res = make_res(5005)
         return res

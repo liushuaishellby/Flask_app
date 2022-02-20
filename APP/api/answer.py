@@ -21,8 +21,8 @@ def push_answer():
                     return res
                 answer_data = request.get_json()
                 if type(answer_data) == str:
-                    data = json.loads(answer_data)
-
+                    answer_data = json.loads(answer_data)
+                print(answer_data)
                 question_id = answer_data['question_id']
                 content = answer_data['content']
             else:
@@ -49,9 +49,10 @@ def push_answer():
                     res = make_res(5003)
                     return res
                 answer_info = {
-                    "answer_user": answer.author.username,
+                    "answer_username": answer.author.username,
                     "answer_content": answer.content,
-                    "answer_create_time": str(answer.create_time)}
+                    "answer_create_time": str(answer.create_time),
+                    "answer_nickname":answer.author.nickname}
                 answer_list.append(answer_info)
                 # data中保存了所有回复信息以及回复总数
             data = {"answer_total": len(question.answers), "answer_info": answer_list}

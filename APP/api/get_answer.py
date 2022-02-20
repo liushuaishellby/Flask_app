@@ -41,7 +41,8 @@ def get_answer():
                 "answer_id": answer.id,
                 "answer_username": answer.author.username,
                 "answer_content": answer.content,
-                "answer_create_time": str(answer.create_time)}
+                "answer_create_time": str(answer.create_time),
+                "answer_nickname": answer.author.nickname}
             answer_list.append(answer_info)
         # data中保存了所有回复信息以及回复总数
         data = {"answer_total": len(question.answers), "answer_info": answer_list}

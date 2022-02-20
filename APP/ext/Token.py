@@ -16,7 +16,7 @@ def create_token(api_user):
     # 第一步设置参数内部的私钥，这里这里写在共用的配置信息，如果是测试可以写死
     # 第二部 参数是有效期（秒）
 
-    s = Serializer(secret_key=ConfigClass.SECRET_KEY, expires_in=3600)
+    s = Serializer(secret_key=ConfigClass.SECRET_KEY, expires_in=518400000)
 
     # 接受用户的id转换与编码
     token = s.dumps({"id": api_user}).decode('ascii')
@@ -52,7 +52,6 @@ def login_required(func):
     @wraps(func)
     def verification_token(*args, **kwargs):
         try:
-            print('进来')
             # 在请求头拿到token
             token = request.headers['XT-token']
         except Exception:
