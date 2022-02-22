@@ -13,6 +13,7 @@ def community():
         info = {
             "title": question.title, "content": question.content,
             "username": UserInfo.query.get(question.id).username,
+            "avatar_url":  UserInfo.query.get(question.id).avatar_url,
             "create_time": str(question.create_time),
             "question_id": question.id,
             "answer_total": len(question.answers)}

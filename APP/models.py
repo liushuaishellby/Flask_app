@@ -16,6 +16,7 @@ class UserInfo(db.Model):
     age = db.Column(db.String(16), nullable=False)
     # 性别只能使用男/女
     sex = db.Column(db.Enum("男", "女"), nullable=False)
+    avatar_url = db.Column(db.String(255),nullable=False)
     token = db.Column(db.String(255), nullable=False)
     nickname = db.Column(db.String(16))
 

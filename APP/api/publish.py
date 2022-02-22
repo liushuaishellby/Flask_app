@@ -1,3 +1,5 @@
+import json
+
 from . import api
 from flask import request
 from .. import db
@@ -15,12 +17,29 @@ from ..ext.forms import QuestionFrom
 @api.route('/publish', methods=['GET', 'POST'])
 @login_required
 def publish():
-    form = QuestionFrom(request.form)
-    print(form.validate())
-    # 校验发布的文案字数是否符合要求
-    if form.validate():
-        title = form.title.data
-        content = form.content.data
+    """
+    需要参数：title、content
+    """
+    if request.method == 'POST':
+        if request.headers.get('Content-Type') == 'application/json':
+            if not request.get_json():
+                res = make_res(4000)
+                return res
+            data = request.get_json()
+            if type(data) == str:
+                data = json.loads(data)
+            print(data)
+            title = data['title']
+            content = data['content']
+        else:
+            form = QuestionFrom(request.form)
+            # 校验发布的文案字数是否符合要求
+            if form.validate():
+                title = form.title.data
+                content = form.content.data
+            else:
+                res = make_res(5006)
+                return res
         # 解密token 或者名户名
         token = request.headers['XT-token']
         id = verify_token(token)
