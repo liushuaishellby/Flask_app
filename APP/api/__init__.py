@@ -4,4 +4,4 @@ from flask import Blueprint
 api = Blueprint("api", __name__)
 
 from . import community, question_detail, answer, send_mail, login, logout, publish, \
-    community, register, search, get_answer, get_userinfo
+    community, register, search, get_answer, get_userinfo,avatar_token,update_avatar

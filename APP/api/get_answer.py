@@ -11,7 +11,7 @@ from ..ext.forms import AnswerForm
 
 
 @api.route('/get_answer', methods=['POST', 'GET'])
-# @login_required
+@login_required
 def get_answer():
     try:
         if request.method == 'POST':
