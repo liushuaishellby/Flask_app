@@ -20,7 +20,6 @@ def get_answer():
                     res = make_res(4000)
                     return res
                 data = request.get_json()
-                print(data)
                 if type(data) == str:
                     data = json.loads(data)
                 question_id = data['question_id']
@@ -43,7 +42,8 @@ def get_answer():
                 "answer_content": answer.content,
                 "answer_create_time": str(answer.create_time),
                 "answer_nickname": answer.author.nickname,
-                "avatar_url": answer.author.avatar_url}
+                "avatar_url": answer.author.avatar_url,
+                "nickname": question.author.nickname}
             answer_list.append(answer_info)
         # data中保存了所有回复信息以及回复总数
         data = {"answer_total": len(question.answers), "answer_info": answer_list}

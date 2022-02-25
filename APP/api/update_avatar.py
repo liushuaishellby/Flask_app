@@ -1,13 +1,9 @@
-import json
+
 from . import api
-from flask import request, render_template, jsonify, redirect, url_for, session
+from flask import request
 
 from .. import db
-from ..ext.Token import create_token, verify_token
-from ..ext.get_qiniu_token import get_qiniu_token
-from ..ext.sql_app import GetSql
-from ..ext.forms import LoginForm
-from werkzeug.security import check_password_hash
+from ..ext.Token import  verify_token
 from ..ext.Token import login_required
 from ..ext.make_res import make_res
 from ..models import UserInfo

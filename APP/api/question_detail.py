@@ -21,7 +21,7 @@ def question_detail():
                 "create_title": question.title,
                 "time": question.create_time,
                 "content": question.content,
-            }
+                "nickname": question.author.nickname}
             res = make_res(200, data)
             return res
         else:

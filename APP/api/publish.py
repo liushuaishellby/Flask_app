@@ -46,6 +46,7 @@ def publish():
 
         user = UserInfo.query.get(id)
         print(user)
+        print(user.username)
         # 将数据添加至数据库
         question = QuestionModel(title=title, content=content, author=user)
         db.session.add(question)

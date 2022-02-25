@@ -21,6 +21,7 @@ def register():
                 data = request.get_json()
                 if type(data) == str:
                     data = json.loads(data)
+                print(data)
                 if not data['username'] or not data['password'] or not data['nickname'] or not data['email'] or not \
                 data['captcha']:
                     res = make_res(4003)
